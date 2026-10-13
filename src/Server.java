@@ -334,11 +334,9 @@ sealed interface Expr permits
 
     record Variable(String name) implements Expr {
         public double eval() {
-            return switch (name.toLowerCase()) {
-                case "pi" -> Math.PI;
-                case "e"  -> Math.E;
-                default -> throw new RuntimeException("Undefined variable: " + name);
-            };
+            if (name.equals("pi")) return Math.PI;
+            if (name.equals("e")) return Math.E;
+            throw new RuntimeException("Variabile non definita: " + name);
         }
     }
 
